@@ -33,3 +33,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_pic': self.profile_pic
         }
+
+    items = db.relationship('Item', back_populates='user', cascade='all, delete')
+    comments = db.relationship('Comment', back_populates='user', cascade='all, delete')

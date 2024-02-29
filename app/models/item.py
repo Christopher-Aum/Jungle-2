@@ -26,3 +26,18 @@ class Item(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+
+    user = db.relationship('User', back_populates='items')
+    comments = db.relationship('Comment', back_populates='item', cascade='all, delete')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'body': self.body,
+            'image': self.image,
+            'owner': self.user.username,
+            'type': self.type.name,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
