@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
+# Class for comment table
 class Comment(db.Model):
     __tablename__ = 'comments'
 

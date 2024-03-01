@@ -5,13 +5,11 @@ from enum import Enum
 class Type(Enum):
     Electronics = 'Electronics'
     Home = 'Home'
-    Clothing = 'Clothing'
     Computers = 'Computers'
     Music = 'Music'
     Gaming = 'Gaming'
-    Arts = 'Arts'
 
-
+# Class for item table
 class Item(db.Model):
     __tablename__ = 'items'
 
