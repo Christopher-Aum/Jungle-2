@@ -3,6 +3,9 @@ const GET_ITEMS = 'item/GET_ITEMS'
 const POST_ITEM = 'item/POST_ITEM'
 const UPDATE_ITEM = 'item/UPDATE_ITEM'
 const DELETE_ITEM = 'item/DELETE_ITEM'
+const POST_COMMENT = 'songs/POST_COMMENT';
+const DELETE_COMMENT = 'songs/DELETE_COMMENT';
+const EDIT_COMMENT = 'songs/EDIT_COMMENT';
 
 const getItem = (item) => ({
     type: GET_ITEM,
@@ -27,6 +30,21 @@ const updateItem = (item) => ({
 const deleteItem = (itemId, commentId) => ({
     type: DELETE_ITEM,
     payload: {itemId, commentId}
+})
+
+const postComment = (comment) => ({
+    type: POST_COMMENT,
+    payload: comment
+})
+
+const deleteComment = (commentId) => ({
+    type: DELETE_COMMENT,
+    payload: commentId
+})
+
+const editComment = (comment) => ({
+    type: EDIT_COMMENT,
+    payload: comment
 })
 
 export const thunkGetItem = (itemId) => async (dispatch) => {
@@ -84,7 +102,7 @@ export const thunkEditItem = (item) => async (dispatch) => {
     })
     if (response.ok){
         const edit_item = await response.json()
-        dispatch(UPDATE_ITEM(edit_item))
+        dispatch(updateItem(edit_item))
         return edit_item
     } else {
         const data = await response.json()
@@ -110,6 +128,58 @@ export const thunkDeleteItem = (itemId) => async (dispatch) => {
     }
 }
 
+export const thunkPostComment = (itemId, comment) => async (dispatch) => {
+    const response = await fetch(`/api/items/${itemId}/comments`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(comment)
+    })
+    if (response.ok){
+        const post_comment = await response.json()
+        dispatch(postComment(post_comment))
+        return post_comment
+    } else {
+        const data = await response.json()
+        if (data.errors){
+            return data
+        }
+    }
+}
+
+export const thunkDeleteComment = (itemId, commentId) => async (dispatch) => {
+    const response = await fetch(`/api/items/${itemId}/comments/${commentId}`, {
+        method: 'DELETE'
+    })
+    if (response.ok){
+        const delete_comment = await response.json()
+        dispatch(deleteComment(commentId))
+        return delete_comment
+    } else {
+        const data = await response.json();
+        if(data.errors){
+            return data
+        }
+    }
+}
+
+export const thunkEditComment = (itemId, comment) => async (dispatch) => {
+    const response = await fetch(`/api/items/${itemId}/comments/${comment.id}`, {
+        method: 'POST',
+        body: JSON.stringify(comment)
+    })
+
+    if (response.ok){
+        const edit_comment = await response.json()
+        dispatch(editComment(edit_comment))
+        return edit_comment
+    } else {
+        const data = await response.json()
+        if (data.errors){
+            return data
+        }
+    }
+}
+
 const initialState = {items: {}}
 
 const itemReducer = (state=initialState, action) => {
@@ -123,7 +193,32 @@ const itemReducer = (state=initialState, action) => {
             newState = {...state}
             newState.items = action.payload
             return newState
-        
+        case POST_ITEM:
+            newState = {...state}
+            newState.items = {...state.items, [action.payload.id]: action.payload}
+            return newState
+        case UPDATE_ITEM:
+            return {
+                ...state,
+                item: action.payload
+            }
+        case DELETE_ITEM:
+            newState = {...state}
+            newState.items = {...state.items}
+            delete newState.items[action.itemId]
+            return newState
+        case POST_COMMENT:
+            newState = {...state}
+            newState.items = {...state.items, [action.payload.id]: action.payload}
+            return newState
+        case EDIT_COMMENT:
+            newState = {...state, comment: action.comment}
+            return newState
+        case DELETE_COMMENT:
+            newState = {...state}
+            newState.items = {...state.items}
+            delete newState.items[action.itemId.commentId]
+            return newState
         default:
             return state
     }

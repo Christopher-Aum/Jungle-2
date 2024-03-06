@@ -16,6 +16,8 @@ s3 = boto3.client(
 
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "mp3", "mp4", "wav"}
+BUCKET_NAME = os.environ.get("S3_SONGUPLOADBUCKET")
+S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 
 def get_unique_filename(filename):
     ext = filename.rsplit(".", 1)[1].lower()
@@ -26,8 +28,6 @@ def song_file(filename):
     return "." in filename and \
         filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
-BUCKET_NAME = os.environ.get("S3_SONGUPLOADBUCKET")
-S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 
 def upload_file_to_s3(file, acl="public-read"):
     try:
