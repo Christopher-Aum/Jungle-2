@@ -59,7 +59,7 @@ export const thunkGetItem = (itemId) => async (dispatch) => {
 }
 
 export const thunkGetItems = () => async (dispatch) => {
-    const response = await fetch(`/api/items`)
+    const response = await fetch(`/api/items/`)
     if(response.ok){
         const items = await response.json()
         dispatch(getItems(items))

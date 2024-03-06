@@ -5,7 +5,7 @@ import { thunkGetItems } from "../../redux/item";
 function HomePage(){
     const dispatch = useDispatch()
     const items = useSelector(state => state.items.items)
-
+    console.log(items)
     useEffect(()=> {
         dispatch(thunkGetItems())
     }, [])

@@ -22,7 +22,7 @@ class Comment(db.Model):
         return {
             'id': self.id,
             'body': self.body,
-            'user_id': self.user_id,
+            'user_id': self.user.to_dict(),
             'item_id': self.item_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at

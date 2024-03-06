@@ -25,13 +25,14 @@ def item_seed(all_users):
     item21 = Item(title='Roborock Q7', body="Roborock robot vacuum only supports 2.4G WiFi.However,since most routers support both have 2.4G and 5G,in order to ensure the machine's stability,it is recommended to switch to 2.4G WiFi when using the robot by following the instructions of your router setup.", image='https://jungle-capstone.s3.amazonaws.com/Roborock-Home-1.jpg', type='Home', user_id=3)
     item22 = Item(title='KoolMore KM-CWO30-SS', body="Built-In Installation and User-Friendly Control: Seamlessly integrate the oven into your kitchen with built-in installation, and enjoy user-friendly control for a hassle-free cooking experience.", image='https://jungle-capstone.s3.amazonaws.com/Koolmore-Microwave-Home-2.jpg', type='Home', user_id=3)
     item23 = Item(title='Oster 4 Slice Toaster', body='Easy Touch technology provides an intuitive touchscreen interface for easy control', image='https://jungle-capstone.s3.amazonaws.com/Oster-Home-3.jpg', type='Home', user_id=3)
-    item24 = Item(title='Herma Miller Aeron Chair', body='Recycled Material', image='https://jungle-capstone.s3.amazonaws.com/Herman-Miller-Home-4.jpg', type='Home', user_id=3)
+    item24 = Item(title='Herman Miller Aeron Chair', body='Recycled Material', image='https://jungle-capstone.s3.amazonaws.com/Herman-Miller-Home-4.jpg', type='Home', user_id=3)
     item25 = Item(title='EUREKA ERGONOMIC Gaming Desk', body='【Large Desk Surface】 Wing-shaped Gaming desks measures 72" wide by 24" deep,supports up to 300 LBS.Ergonomic Desktop provides flexible room for your abdomen and arms,designed for the people who sit for a long time.Large gaming desktop with smooth carbon fiber texture easily hold gaming gears,music studio or live streaming devices.', image='https://jungle-capstone.s3.amazonaws.com/Eureka-Home-5.jpg', type='Home', user_id=3)
 
     all_items = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15, item16, item17, item18, item19, item20, item21, item22, item23, item24, item25]
-
+    print(all_users)
     for item in all_items:
-        item.user = all_users[item.user_id]
+        print(item.user_id)
+        item.user = all_users[item.user_id - 1]
 
     db.session.add_all(all_items)
     db.session.commit()
