@@ -112,6 +112,7 @@ const ItemPage = () => {
                 {}
                     <span key={comment.id}>
                         <p>
+                            {console.log(comment.user_id.username)}
                             <h2>{comment.user_id.username}</h2> {postedAtDate(comment.updated_at)}
                         </p>
                         <p>{comment.body}</p>
