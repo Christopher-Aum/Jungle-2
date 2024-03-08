@@ -100,7 +100,7 @@ const ItemPage = () => {
             <span>
 
 
-                {notPosted && currentUser.username !== item.owner && <button><OpenModalMenuItem
+                {notPosted && currentUser?.username !== item.owner && <button><OpenModalMenuItem
                                     itemText="Post Comment"
                                     modalComponent={<CommentModal itemId={itemId} navigate={navigate} />}
                                 /></button>}
@@ -111,8 +111,8 @@ const ItemPage = () => {
                 return <>
                 {}
                     <span key={comment.id}>
-                        <p>
-                            <h2>{comment.user_id.username}</h2> {postedAtDate(comment.updated_at)}
+                        <p> {console.log(comment.user_id.username)}
+                            <h2>{comment.user_id?.username}</h2> {postedAtDate(comment.updated_at)}
                         </p>
                         <p>{comment.body}</p>
                         {comment.user_id.id !== currentUser.id &&  (<>
