@@ -116,7 +116,7 @@ const ItemPage = () => {
 
                         </p>
                         <p>{comment.body}</p>
-                        {comment.user_id?.id !== currentUser.id &&  (<>
+                        {comment.user_id?.id !== currentUser?.id &&  (<>
 
                         </>
                             ) }
