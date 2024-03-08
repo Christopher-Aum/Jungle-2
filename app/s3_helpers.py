@@ -9,14 +9,14 @@ from wtforms import SubmitField
 
 s3 = boto3.client(
    "s3",
-   aws_access_key_id=os.environ.get("S3_UPLOADACCESSKEY"),
-   aws_secret_access_key=os.environ.get("S3_UPLOADSECRETACCESSKEY")
+   aws_access_key_id=os.environ.get("S3_KEY"),
+   aws_secret_access_key=os.environ.get("S3_SECRET")
 )
 
 
 
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "mp3", "mp4", "wav"}
-BUCKET_NAME = os.environ.get("S3_SONGUPLOADBUCKET")
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
+BUCKET_NAME = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 
 def get_unique_filename(filename):

@@ -8,10 +8,10 @@ from datetime import datetime
 item_routes = Blueprint('items', __name__)
 
 def post_item(itemForm):
-    item = itemForm.data['item_pic']
-
+    item = itemForm.data['image']
     item.filename = s3.get_unique_filename(item.filename)
     upload_item = s3.upload_file_to_s3(item)
+    print('UPLOADITEM', upload_item)
     user = User.query.get(current_user.id)
     new_item = Item(
         user = user,
@@ -62,6 +62,13 @@ def update_item(id):
         item.title = updated_item.title.data
         item.body = updated_item.body.data
         item.type = updated_item.type.data
+        if updated_item.image:
+            image = updated_item.data['image']
+            image.filename = s3.get_unique_filename(image.filename)
+            image = s3.upload_file_to_s3(image)
+            s3.remove_file_from_s3(item.image)
+            item.image = image['url']
+
 
         db.session.add(item)
         db.session.commit()
@@ -73,14 +80,14 @@ def update_item(id):
 def delete_item(id):
     item= Item.query.get(id)
     if not item:
-        return {'Error': 'Song not found'}, 404
+        return {'Error': 'Item not found'}, 404
 
     db.session.delete(item)
     db.session.commit()
 
     return {'Message': 'Successfully Deleted'}
 
-@item_routes.route('/<int:id>/comments', methods=['POST'])
+@item_routes.route('/<int:id>/comments/', methods=['POST'])
 @login_required
 def post_item_comment(id):
     form = CommentForm()
@@ -97,14 +104,14 @@ def post_item_comment(id):
         db.session.add(comment)
         db.session.commit()
         return comment.to_dict()
-    return {'Error': 'Unable to create comment'}
+    return {'Error': 'Unable to create comment'}, 401
 
-@item_routes.route('/<int:id>/comments/<int:c_id>', methods=['POST'])
+@item_routes.route('/<int:id>/comments/<int:c_id>/', methods=['POST'])
 @login_required
 def edit_item_comment(id, c_id):
     comment = Comment.query.get(c_id)
     form = CommentForm()
-
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit() and comment.user_id == current_user.id:
         comment.body = form.data['body']
         comment.updated_at = datetime.utcnow()
@@ -112,9 +119,12 @@ def edit_item_comment(id, c_id):
         db.session.commit()
         return comment.to_dict()
     else :
-        return {'Error': 'Could not edit comment'}
+        
+        print(form.errors)
+        print(comment.user_id)
+        return {'Error': 'Could not edit comment'}, 401
 
-@item_routes.route('/<int:id>/comments/<int:c_id>', methods=['DELETE'])
+@item_routes.route('/<int:id>/comments/<int:c_id>/', methods=['DELETE'])
 @login_required
 def delete_item_comment(id, c_id):
     comment = Comment.query.get(c_id)

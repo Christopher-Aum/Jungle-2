@@ -8,4 +8,4 @@ class ItemForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired(message="Title is required.")])
     body = StringField("Body", validators=[DataRequired(message="Body is required.")])
     type = StringField('Type', validators=[DataRequired(message='Type is required.')])
-    item_pic = FileField('Item Pic', validators=[FileAllowed(ALLOWED_EXTENSIONS)])
+    image = FileField('image', validators=[FileAllowed(ALLOWED_EXTENSIONS)])

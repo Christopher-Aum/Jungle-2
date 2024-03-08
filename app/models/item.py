@@ -36,6 +36,7 @@ class Item(db.Model):
             'image': self.image,
             'owner': self.user.username,
             'type': self.type.name,
+            'comments': [comment.to_dict() for comment in self.comments],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

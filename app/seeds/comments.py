@@ -58,7 +58,7 @@ def comment_seed(all_users, all_items):
         comment.item = all_items[comment.item_id-1]
         comment.users = all_users[comment.user_id-1]
 
-    db.session.add(all_comments)
+    db.session.add_all(all_comments)
     db.session.commit()
 
 def undo_comment_seeds():
