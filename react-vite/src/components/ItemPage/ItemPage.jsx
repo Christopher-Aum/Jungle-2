@@ -40,7 +40,7 @@ const ItemPage = () => {
     console.log('Comments', itemComments)
 
     useEffect(()=> {
-        if(itemComments?.find(comment => comment.user_id.id == currentUser.id)){
+        if(currentUser && itemComments?.find(comment => comment.user_id?.id == currentUser?.id)){
             setNotPosted(false)
         } else setNotPosted(true)
     })
@@ -100,7 +100,7 @@ const ItemPage = () => {
             <span>
 
 
-                {notPosted && currentUser?.username !== item.owner && <button><OpenModalMenuItem
+                {notPosted && currentUser && currentUser?.username !== item?.owner && <button><OpenModalMenuItem
                                     itemText="Post Comment"
                                     modalComponent={<CommentModal itemId={itemId} navigate={navigate} />}
                                 /></button>}
@@ -110,23 +110,23 @@ const ItemPage = () => {
 
                 return <>
                 {}
-                    <span key={comment.id}>
+                    <span key={comment?.id}>
                         <p> {console.log(comment.user_id?.username)}
-                            <h2>{comment.user_id?.username}</h2> {postedAtDate(comment.updated_at)}
+                            <h2>{comment?.user_id?.username}</h2> {postedAtDate(comment?.updated_at)}
 
                         </p>
-                        <p>{comment.body}</p>
-                        {comment.user_id?.id !== currentUser.id &&  (<>
+                        <p>{comment?.body}</p>
+                        {comment?.user_id?.id !== currentUser?.id &&  (<>
 
                         </>
                             ) }
-                        {currentUser && (comment.user_id?.id === currentUser?.id) &&
+                        {currentUser && (comment?.user_id?.id === currentUser?.id) &&
                                     <button><OpenModalMenuItem
                                     itemText="Manage Comment"
                                     modalComponent={<CommentModal itemId={itemId} prevComment={comment} navigate={navigate} />}
                                 /></button>
                                 }
-                                {currentUser && (comment.user_id?.id === currentUser?.id) &&
+                                {currentUser && (comment?.user_id?.id === currentUser?.id) &&
 
                                         <button onClick={() => OpenDelete(comment)} style={{color: "#000433", border: "1.5px solid rgba(0, 4, 51, .3)", borderRadius: "5px", padding: "1px 15px", margin: "10px", backgroundColor: "#EF3E2B"}}>
                                             Delete
