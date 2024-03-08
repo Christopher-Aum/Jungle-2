@@ -111,23 +111,22 @@ const ItemPage = () => {
                 return <>
                 {}
                     <span key={comment.id}>
-                        <p>
-                            
+                        <p> {console.log(comment.user_id?.username)}
                             <h2>{comment.user_id?.username}</h2> {postedAtDate(comment.updated_at)}
 
                         </p>
                         <p>{comment.body}</p>
-                        {comment.user_id.id !== currentUser.id &&  (<>
+                        {comment.user_id?.id !== currentUser.id &&  (<>
 
                         </>
                             ) }
-                        {currentUser && (comment.user_id.id === currentUser?.id) &&
+                        {currentUser && (comment.user_id?.id === currentUser?.id) &&
                                     <button><OpenModalMenuItem
                                     itemText="Manage Comment"
                                     modalComponent={<CommentModal itemId={itemId} prevComment={comment} navigate={navigate} />}
                                 /></button>
                                 }
-                                {currentUser && (comment.user_id.id === currentUser?.id) &&
+                                {currentUser && (comment.user_id?.id === currentUser?.id) &&
 
                                         <button onClick={() => OpenDelete(comment)} style={{color: "#000433", border: "1.5px solid rgba(0, 4, 51, .3)", borderRadius: "5px", padding: "1px 15px", margin: "10px", backgroundColor: "#EF3E2B"}}>
                                             Delete
