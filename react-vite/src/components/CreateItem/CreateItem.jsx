@@ -13,7 +13,7 @@ const dispatch = useDispatch();
     const [disabled, setDisabled] = useState(false);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    const [image, setImage] = useState(itemToEdit ? itemToEdit.image : 'No Image')
+    const [image, setImage] = useState()
     const [imageURL, setimageURL] = useState(itemToEdit ? itemToEdit.image: 'No Image URL')
     const [title, setTitle] = useState(itemToEdit ? itemToEdit.title : '')
     const [body, setBody] = useState(itemToEdit ? itemToEdit.body : '')
@@ -48,7 +48,6 @@ const dispatch = useDispatch();
 
         const payload = {
             title,
-            image,
             body,
             type
         }
@@ -80,8 +79,9 @@ const dispatch = useDispatch();
                 <h1>Upload an Item</h1>
             </div>
             <div>
-
+            Image
             <div className="upload-form_song_pic">
+
                     <label className="image-label">
 
                     <img src={imageURL !='No Image URL' ? imageURL : 'https://jungle-capstone.s3.amazonaws.com/Plus.png'} />
@@ -140,7 +140,7 @@ const dispatch = useDispatch();
         </form>
     ) : (
         <div>
-            <img src={image} />
+            <img src={imageURL} />
             <span>{title}</span>
             <span>{body}</span>
         </div>
