@@ -62,7 +62,8 @@ def update_item(id):
         item.title = updated_item.title.data
         item.body = updated_item.body.data
         item.type = updated_item.type.data
-        if updated_item.image:
+        print('UPDATED ITEM IMAGE', updated_item.image.data)
+        if updated_item.image.data:
             image = updated_item.data['image']
             image.filename = s3.get_unique_filename(image.filename)
             image = s3.upload_file_to_s3(image)
@@ -119,7 +120,7 @@ def edit_item_comment(id, c_id):
         db.session.commit()
         return comment.to_dict()
     else :
-        
+
         print(form.errors)
         print(comment.user_id)
         return {'Error': 'Could not edit comment'}, 401

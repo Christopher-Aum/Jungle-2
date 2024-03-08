@@ -20,10 +20,9 @@ function HomePage(){
         for (let item of Object.values(items)){
             res.push([item])
         }
-        console.log('result array', res)
+
         return res;
     }
-
     if (!items) return 'Loading...'
     return (
         <>
