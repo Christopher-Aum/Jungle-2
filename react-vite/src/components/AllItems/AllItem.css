@@ -1,0 +1,5 @@
+.AllItem-Item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

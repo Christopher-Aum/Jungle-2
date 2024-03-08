@@ -1,0 +1,15 @@
+.Computer-Items{
+    display: flex;
+    gap: 100px;
+}
+.Item-Containers{
+    display: grid;
+    justify-content: center;
+
+
+}
+.Item-Containers h2{
+    justify-self: center;
+}
+
+

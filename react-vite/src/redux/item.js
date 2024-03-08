@@ -13,7 +13,7 @@ const getItem = (item) => ({
 })
 
 const getItems = (items) => ({
-    type: GET_ITEM,
+    type: GET_ITEMS,
     payload: items
 })
 
@@ -62,6 +62,7 @@ export const thunkGetItems = () => async (dispatch) => {
     const response = await fetch(`/api/items/`)
     if(response.ok){
         const items = await response.json()
+        console.log(items)
         dispatch(getItems(items))
         return items
     }
@@ -73,7 +74,7 @@ export const thunkPostItem = (item) => async (dispatch) => {
     const data = new FormData()
     for (let key of Object.keys(item))
         data.append(key, item[key]);
-    console.log(data.item)
+    console.log(item.image)
     const response = await fetch('/api/items/', {
         method: 'POST',
         body: data
@@ -96,7 +97,7 @@ export const thunkEditItem = (item) => async (dispatch) => {
     for (let key of Object.keys(item))
         formData.append(key, item[key])
 
-    const response = await fetch(`/api/items/${itemId}`, {
+    const response = await fetch(`/api/items/${itemId}/`, {
         method: 'POST',
         body: formData
     })
@@ -113,7 +114,7 @@ export const thunkEditItem = (item) => async (dispatch) => {
 }
 
 export const thunkDeleteItem = (itemId) => async (dispatch) => {
-    const response = await fetch(`/api/items${itemId}`, {
+    const response = await fetch(`/api/items/${itemId}/`, {
         method: 'DELETE'
     })
     if (response.ok){
@@ -129,10 +130,12 @@ export const thunkDeleteItem = (itemId) => async (dispatch) => {
 }
 
 export const thunkPostComment = (itemId, comment) => async (dispatch) => {
-    const response = await fetch(`/api/items/${itemId}/comments`, {
+    const data = new FormData()
+    for (let key of Object.keys(comment))
+        data.append(key, comment[key]);
+    const response = await fetch(`/api/items/${itemId}/comments/`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(comment)
+        body: data
     })
     if (response.ok){
         const post_comment = await response.json()
@@ -147,7 +150,7 @@ export const thunkPostComment = (itemId, comment) => async (dispatch) => {
 }
 
 export const thunkDeleteComment = (itemId, commentId) => async (dispatch) => {
-    const response = await fetch(`/api/items/${itemId}/comments/${commentId}`, {
+    const response = await fetch(`/api/items/${itemId}/comments/${commentId}/`, {
         method: 'DELETE'
     })
     if (response.ok){
@@ -163,11 +166,14 @@ export const thunkDeleteComment = (itemId, commentId) => async (dispatch) => {
 }
 
 export const thunkEditComment = (itemId, comment) => async (dispatch) => {
-    const response = await fetch(`/api/items/${itemId}/comments/${comment.id}`, {
+    const data = new FormData()
+    for (let key of Object.keys(comment))
+        data.append(key, comment[key]);
+    const response = await fetch(`/api/items/${itemId}/comments/${comment.id}/`, {
         method: 'POST',
-        body: JSON.stringify(comment)
+        body: data
     })
-
+    console.log(comment)
     if (response.ok){
         const edit_comment = await response.json()
         dispatch(editComment(edit_comment))
@@ -217,7 +223,7 @@ const itemReducer = (state=initialState, action) => {
         case DELETE_COMMENT:
             newState = {...state}
             newState.items = {...state.items}
-            delete newState.items[action.itemId.commentId]
+            delete newState.items[action.payload]
             return newState
         default:
             return state
