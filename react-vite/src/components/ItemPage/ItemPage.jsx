@@ -40,7 +40,7 @@ const ItemPage = () => {
     console.log('Comments', itemComments)
 
     useEffect(()=> {
-        if(itemComments?.find(comment => comment.user_id.id == currentUser.id)){
+        if(itemComments?.find(comment => comment.user_id?.id == currentUser?.id)){
             setNotPosted(false)
         } else setNotPosted(true)
     })
