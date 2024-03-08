@@ -1,3 +1,36 @@
 .profile-dropdown {
   position: absolute;
 }
+nav {
+  position: sticky;
+  top:0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  gap: 800px;
+
+  padding: fill;
+  height: 50px;
+  background-color: #000433;
+}
+nav > ul {
+  display: flex;
+  list-style: none;
+}
+nav > ul > li {
+  display: flex;
+  transition: background-color .2s;
+  background-color: #000433;
+  /* justify-content: center; */
+  color: white;
+  align-items: center;
+  width: 100px;
+}
+nav > ul > li:hover {
+  transition: background-color .2s;
+  background-color:  rgba(37,37,77,1);
+}
+.nav-search{
+  width: 200px;
+}

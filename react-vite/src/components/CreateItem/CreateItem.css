@@ -1,0 +1,12 @@
+.image-label input{
+width: 0;
+height: 0;
+}
+.image-label img{
+    min-width: 100px;
+    min-height: 100px;
+    height: 200px;
+    width: 200px;
+    /* background-color: white; */
+    cursor:pointer
+}

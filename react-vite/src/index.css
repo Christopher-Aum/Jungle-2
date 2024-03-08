@@ -1,1 +1,7 @@
 /* TODO: Add sitewide styles */
+html, body {
+    background-color: #000433;
+    /* background: linear-gradient(45deg, #2b2bef 0%, #2bceef 50%, #EF3E2B 100%); */
+    /* background: rgb(24, 26, 27); */
+    color:rgb(230, 230, 230);
+}

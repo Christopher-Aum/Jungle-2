@@ -5,13 +5,11 @@ from enum import Enum
 class Type(Enum):
     Electronics = 'Electronics'
     Home = 'Home'
-    Clothing = 'Clothing'
     Computers = 'Computers'
     Music = 'Music'
     Gaming = 'Gaming'
-    Arts = 'Arts'
 
-
+# Class for item table
 class Item(db.Model):
     __tablename__ = 'items'
 
@@ -26,3 +24,19 @@ class Item(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+
+    user = db.relationship('User', back_populates='items')
+    comments = db.relationship('Comment', back_populates='item', cascade='all, delete')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'body': self.body,
+            'image': self.image,
+            'owner': self.user.username,
+            'type': self.type.name,
+            'comments': [comment.to_dict() for comment in self.comments],
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
