@@ -5,3 +5,7 @@ html, body {
     /* background: rgb(24, 26, 27); */
     color:rgb(230, 230, 230);
 }
+body{
+    margin: 0;
+    padding: 0;
+}

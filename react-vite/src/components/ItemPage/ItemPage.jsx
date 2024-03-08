@@ -40,7 +40,7 @@ const ItemPage = () => {
     console.log('Comments', itemComments)
 
     useEffect(()=> {
-        if(itemComments?.find(comment => comment.user_id?.id == currentUser?.id)){
+        if(currentUser && itemComments?.find(comment => comment.user_id?.id == currentUser?.id)){
             setNotPosted(false)
         } else setNotPosted(true)
     })
@@ -100,7 +100,7 @@ const ItemPage = () => {
             <span>
 
 
-                {notPosted && currentUser?.username !== item?.owner && <button><OpenModalMenuItem
+                {notPosted && currentUser && currentUser?.username !== item?.owner && <button><OpenModalMenuItem
                                     itemText="Post Comment"
                                     modalComponent={<CommentModal itemId={itemId} navigate={navigate} />}
                                 /></button>}
