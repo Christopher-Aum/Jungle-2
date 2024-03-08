@@ -100,7 +100,7 @@ const ItemPage = () => {
             <span>
 
 
-                {notPosted && currentUser.username !== item.owner && <button><OpenModalMenuItem
+                {notPosted && currentUser?.username !== item.owner && <button><OpenModalMenuItem
                                     itemText="Post Comment"
                                     modalComponent={<CommentModal itemId={itemId} navigate={navigate} />}
                                 /></button>}
