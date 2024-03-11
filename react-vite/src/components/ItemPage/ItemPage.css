@@ -1,0 +1,42 @@
+.item-image{
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 10px;
+}
+.item-container{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.item-buttons{
+    height: 40px;
+    text-decoration: none;
+    list-style: none;
+    align-self: center;
+    border-radius: 20px;
+    background-color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 10px;
+}
+.item-buttons-wrap{
+    width: 100px;
+}
+.item-title{
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+.item-body{
+    width: 80%;
+}
+.post-comment{
+    margin-left: 30px;
+}
+.comment-buttons{
+    display: flex;
+    gap: 10px;
+
+}
+.comments{
+    margin-left: 30px;
+}

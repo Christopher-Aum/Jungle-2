@@ -1,12 +1,26 @@
 .image-label input{
 width: 0;
 height: 0;
+
 }
+
 .image-label img{
     min-width: 100px;
     min-height: 100px;
     height: 200px;
     width: 200px;
     /* background-color: white; */
-    cursor:pointer
+    cursor:pointer;
+
+}
+.create-item-wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.create-item-body{
+    display: flex;
+    /* justify-self: center; */
+    /* align-self: center; */
+    justify-content: center;
 }

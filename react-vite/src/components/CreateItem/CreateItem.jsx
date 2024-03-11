@@ -30,8 +30,11 @@ const dispatch = useDispatch();
     function validate(){
         const tempValidation = {}
         if (''==title) tempValidation.title = 'Enter a title.'
+        if(title.length <= 1) tempValidation.title = 'Title must have more than one character.'
         if(''==body) tempValidation.body = 'Enter a body.'
+        if(body.length < 30) tempValidation.body = 'Enter more than 30 characters.'
         if(''==type) tempValidation.type = 'Pick a type.'
+        if(!image) tempValidation.image = 'Enter an image.'
         setValidation(tempValidation)
 
         if(Object.values(tempValidation)?.length != 0){
@@ -78,9 +81,10 @@ const dispatch = useDispatch();
             <div>
                 <h1>Upload an Item</h1>
             </div>
+                    {errors.errors && errors.errors.map((error, i)=> (<div key={i}>{error}</div>))}
             <div>
-            Image
-            <div className="upload-form_song_pic">
+            <span>Image*</span>
+            <div className="create-item-wrap">
 
                     <label className="image-label">
 
@@ -91,24 +95,25 @@ const dispatch = useDispatch();
                         accept="image/*"
                         onChange={onImageChange}
                         />
-
                     </label>
-                </div>
-                <div>
-                    {errors.errors && errors.errors.map((error, i)=> (<div key={i}>{error}</div>))}
+
+                    {validation.image && <p className="errors">{validation.image}</p>}
+                <div className="create-item-wrap">
                     <label>
-                        Title *
+                        Title*
                         <input
+                        style={{borderRadius:'10px', marginLeft:'10px'}}
                         type="text"
                         value={title}
                         onChange={(e)=> setTitle(e.target.value)}
                         />
-                        {validation.title && <p>{validation.title}</p>}
+                        {validation.title && <p className="errors">{validation.title}</p>}
                     </label>
                     <label>
-                        Set Type *
+                        Set Type*
                         <select
                         type='select'
+                        style={{borderRadius:'10px', marginLeft:'10px'}}
                         value={type}
                         onChange={(e)=> setType(e.target.value)}
                         >
@@ -119,22 +124,25 @@ const dispatch = useDispatch();
                             <option value='Music'>Music</option>
                             <option value='Home'>Home</option>
                         </select>
-                        {validation.type && <p>{validation.type}</p>}
+                        {validation.type && <p className="errors">{validation.type}</p>}
                     </label>
                     <label>
-                        Body
+                        <label className="create-item-body">Body*</label>
                         <textarea
+                        className="comment-input"
+                        style={{height:'100px'}}
                         value={body}
                         onChange={(e)=> setBody(e.target.value)}
 
                         />
-                        {validation.body && <p>{validation.body}</p>}
+                        {validation.body && <p className="errors">{validation.body}</p>}
                     </label>
                     <span>* Required fields</span>
                     <div>
-                        <button type="cancel" onClick={clearForm}>Cancel</button>
-                        <button type="submit" disabled={disabled}>Submit</button>
+                        <button className="comment-button" type="cancel" onClick={clearForm}>Cancel</button>
+                        <button className="comment-button" type="submit" disabled={disabled}>Submit</button>
                     </div>
+                </div>
                 </div>
             </div>
         </form>

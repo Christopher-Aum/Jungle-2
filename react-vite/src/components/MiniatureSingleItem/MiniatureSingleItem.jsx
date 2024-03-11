@@ -9,7 +9,7 @@ const MiniatureSingleItem = ({item}) => {
             <Link to={`/items/${item.id}`}>
             <img className='Mini-Single-Item-Image' src={picture} />
             </Link>
-            <p>{item.title}</p>
+            <p className='Single-Item-Title'>{item.title}</p>
         </span>
     )
 }

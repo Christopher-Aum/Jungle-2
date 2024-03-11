@@ -1,0 +1,67 @@
+.log-title{
+    font-size: 34px;
+    color: black;
+    text-align: center;
+    font-family: sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.logout-modal{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+
+}
+label{
+    padding: 5px;
+    text-align: center;
+}
+.signup button{
+    display: block;
+    border: 2px solid black;
+    width: 50%;
+    height: 30px;
+    text-align: center;
+    margin: 0 auto;
+    background-color: white;
+    color: black;
+    /* box-shadow: 2px 3px 3px black; */
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.signup{
+    padding: 10px 0px;
+}
+input[type='text']{
+    border: 2px solid black;
+    width: 50%;
+    height: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+input[type="password"]{
+    border: 2px solid black;
+    width: 50%;
+    height: 20px;
+    background-color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.errors {
+    color: red;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.content {
+    text-align: center;
+
+}
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
