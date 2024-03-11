@@ -7,12 +7,12 @@ nav {
   z-index: 100;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   gap: 800px;
 
   padding: fill;
   height: 50px;
-  background-color: #000433;
+  background-color: #232323;
 }
 nav > ul {
   display: flex;
@@ -21,11 +21,13 @@ nav > ul {
 nav > ul > li {
   display: flex;
   transition: background-color .2s;
-  background-color: #000433;
+  background-color: #232323;
   /* justify-content: center; */
   color: white;
   align-items: center;
   width: 100px;
+  justify-content: center;
+  font-size: larger;
 }
 nav > ul > li:hover {
   transition: background-color .2s;
@@ -33,4 +35,28 @@ nav > ul > li:hover {
 }
 .nav-search{
   width: 200px;
+
+}
+.nav-search-input{
+  border-radius: 10px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+.links{
+  text-decoration: none;
+  color: inherit;
+}
+.Demo-Button{
+  background-color: white;
+  border: black;
+  border-radius: 10px;
+  height: 20px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+.Demo-Button:hover{
+  cursor: pointer;
+}
+.Profile-Button-Nav:hover{
+  transition: none;
+  background-color: #000423;
+
 }

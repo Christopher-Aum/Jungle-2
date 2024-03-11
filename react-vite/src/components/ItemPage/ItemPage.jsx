@@ -12,6 +12,7 @@ import { useModal } from "../../context/Modal"
 import { thunkEditComment, thunkDeleteComment } from "../../redux/item"
 import DeleteCommentModal from "../DeleteCommentModal/DeleteCommentModal"
 import CommentModal from "../CommentModal/CommentModal"
+import './ItemPage.css'
 
 
 /*
@@ -36,8 +37,7 @@ const ItemPage = () => {
     const item = useSelector(state => state.items.items[itemId])
     const currentUser = useSelector((state)=>state.session.user)
     const itemComments = item?.comments
-    console.log(currentUser)
-    console.log('Comments', itemComments)
+
 
     useEffect(()=> {
         if(currentUser && itemComments?.find(comment => comment.user_id?.id == currentUser?.id)){
@@ -88,19 +88,24 @@ const ItemPage = () => {
 
     return (
         <>
-        <h1>{item.title}</h1>
-        <img src={item.image}/>
-        {item.owner == currentUser?.username && <button onClick={()=> navigate(`/items/${itemId}/edit`)}>Edit</button>}
-        {item.owner == currentUser?.username && <button><OpenModalMenuItem
-                                    itemText="Delete"
+        <h1 className="item-title">{item.title}</h1>
+        <div className="item-container">
+        <div className="item-buttons-wrap">
+        <img className="item-image" src={item.image}/>
+
+        {item.owner == currentUser?.username && <button className="item-buttons" onClick={()=> navigate(`/items/${itemId}/edit`)}>Edit Item</button>}
+        {item.owner == currentUser?.username && <button className="item-buttons"><OpenModalMenuItem
+                                    itemText="Delete Item"
                                     modalComponent={<DeleteItemModal itemId={itemId} navigate={navigate} />}
                                 /></button>}
-        <h4>{item.body}</h4>
-        <div>
+        </div>
+        <h4 className="item-body">{item.body}</h4>
+        </div>
+        <div className="comments">
             <span>
 
 
-                {notPosted && currentUser && currentUser?.username !== item?.owner && <button><OpenModalMenuItem
+                {notPosted && currentUser && currentUser?.username !== item?.owner && <button className="item-buttons post-comment"><OpenModalMenuItem
                                     itemText="Post Comment"
                                     modalComponent={<CommentModal itemId={itemId} navigate={navigate} />}
                                 /></button>}
@@ -111,7 +116,7 @@ const ItemPage = () => {
                 return <>
                 {}
                     <span key={comment?.id}>
-                        <p> {console.log(comment.user_id?.username)}
+                        <p> {}
                             <h2>{comment?.user_id?.username}</h2> {postedAtDate(comment?.updated_at)}
 
                         </p>
@@ -120,19 +125,23 @@ const ItemPage = () => {
 
                         </>
                             ) }
-                        {currentUser && (comment?.user_id?.id === currentUser?.id) &&
-                                    <button><OpenModalMenuItem
+                                    <div className="comment-buttons">
+
+                                    {currentUser && (comment?.user_id?.id === currentUser?.id) &&
+                                    <button className="item-buttons"><OpenModalMenuItem
                                     itemText="Manage Comment"
                                     modalComponent={<CommentModal itemId={itemId} prevComment={comment} navigate={navigate} />}
                                 /></button>
                                 }
                                 {currentUser && (comment?.user_id?.id === currentUser?.id) &&
 
-                                        <button onClick={() => OpenDelete(comment)} style={{color: "#000433", border: "1.5px solid rgba(0, 4, 51, .3)", borderRadius: "5px", padding: "1px 15px", margin: "10px", backgroundColor: "#EF3E2B"}}>
+                                        <button className="item-buttons" onClick={() => OpenDelete(comment)} style={{backgroundColor: "#EF3E2B"}}>
                                             Delete
                                         </button>
 
                                     }
+                                    </div>
+
 
                     </span>
                 </>

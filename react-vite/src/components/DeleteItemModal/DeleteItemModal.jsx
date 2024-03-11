@@ -21,10 +21,10 @@ function DeleteItemModal({itemId, navigate}){
     return (
         <>
         <form className="DeleteForm">
-        <h1>Confirm Delete</h1>
-        <h3>Are you sure you want to delete this Item?</h3>
-                <button onClick={deleteItem}>Yes (Delete Item)</button>
-                <button onClick={keepItem}>No (Keep Item)</button>
+        <h1 className="log-title">Confirm Delete</h1>
+        <h3 style={{color:'black', marginTop:'10px'}}>Are you sure you want to delete this Item?</h3>
+                <button className="comment-button" style={{backgroundColor:"#EF3E2B"}} onClick={deleteItem}>Yes (Delete Item)</button>
+                <button className="comment-button" onClick={keepItem}>No (Keep Item)</button>
         </form>
         </>
     )

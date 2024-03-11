@@ -4,6 +4,7 @@ import { thunkEditComment } from "../../redux/item";
 import { thunkPostComment } from "../../redux/item";
 import { useModal } from "../../context/Modal";
 import { thunkGetItem } from "../../redux/item";
+import './CommentModal.css'
 
 
 
@@ -20,8 +21,8 @@ export default function CommentModal({itemId, prevComment}){
     function validate(){
         const tempValidation={}
         if(''===comment) tempValidation.comment = 'Enter your comment.'
+        if(comment.length > 200) tempValidation.comment = 'Limit your comment to 200 characters.'
         setValidation(tempValidation)
-
         if(Object.values(tempValidation)?.length != 0){
             return false
         }
@@ -52,18 +53,19 @@ export default function CommentModal({itemId, prevComment}){
     }
 
     return (
-        <div>
+        <div className="log-title comment-title">
             <div>Post Your Comment!</div>
             {errors.errors && errors.errors.map((error, i)=> (<div key={i}>{error}</div>))}
             <form onSubmit={submitComment}>
                 <textarea
+                className="comment-input"
                 value={comment}
                 onChange={(e)=> setComment(e.target.value)}
-                placeholder="Enter Your Comment!"
+                placeholder="Enter Your Comment! (200 Character Limit)"
                 required
                 />
                 {validation.comment && <p>{validation.comment}</p>}
-                <button type="submit" disabled={disabled}>Submit Your Comment!</button>
+                <button className="comment-button" type="submit" disabled={disabled}>Submit Your Comment!</button>
             </form>
         </div>
     )

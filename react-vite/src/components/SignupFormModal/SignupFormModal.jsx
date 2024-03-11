@@ -13,6 +13,7 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,7 +23,11 @@ function SignupFormModal() {
           "Confirm Password field must be the same as the Password field",
       });
     }
-
+    if(password.length < 6){
+      return setErrors({
+        password: 'Password must at least six characters'
+      })
+    }
     const serverResponse = await dispatch(
       thunkSignup({
         email,
@@ -39,53 +44,55 @@ function SignupFormModal() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
+    <div className='logout-modal'>
+      <h1 className='log-title'>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
+      <div className='content'>
       <form onSubmit={handleSubmit}>
         <label>
-          Email
           <input
             type="text"
+            placeholder='Email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="errors">{errors.email}</p>}
         <label>
-          Username
           <input
             type="text"
             value={username}
+            placeholder='Username'
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="errors">{errors.username}</p>}
         <label>
-          Password
           <input
             type="password"
             value={password}
+            placeholder='Password'
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="errors">{errors.password}</p>}
         <label>
-          Confirm Password
           <input
             type="password"
+            placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        {errors.confirmPassword && <p className="errors">{errors.confirmPassword}</p>}
+        <div className='signup'><button  type="submit">Sign Up</button></div>
       </form>
-    </>
+      </div>
+    </div>
   );
 }
 
