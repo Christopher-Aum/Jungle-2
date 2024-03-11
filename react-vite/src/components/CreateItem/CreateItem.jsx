@@ -34,7 +34,7 @@ const dispatch = useDispatch();
         if(''==body) tempValidation.body = 'Enter a body.'
         if(body.length < 30) tempValidation.body = 'Enter more than 30 characters.'
         if(''==type) tempValidation.type = 'Pick a type.'
-        if(!image) tempValidation.image = 'Enter an image.'
+        if(!image && !itemToEdit) tempValidation.image = 'Enter an image.'
         setValidation(tempValidation)
 
         if(Object.values(tempValidation)?.length != 0){

@@ -8,11 +8,14 @@
     background-color: white;
     color: black;
     /* box-shadow: 2px 3px 3px black; */
-    cursor: pointer;
+   
     font-size: 12px;
     border-radius: 10px;
     margin-bottom: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.comment-button:hover{
+    cursor: pointer;
 }
 .comment-input{
     border-radius: 10px;
