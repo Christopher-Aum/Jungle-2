@@ -45,9 +45,10 @@ function Navigation() {
       <li className="Profile-Button-Nav">
         <ProfileButton />
       </li>
+      {!currentUser &&
       <button className="Demo-Button" onClick={demoLogin}>
         Demo User
-      </button>
+      </button>}
     </ul>
     </nav>
   );
