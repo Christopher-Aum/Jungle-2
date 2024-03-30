@@ -42,7 +42,7 @@ const dispatch = useDispatch();
         }
         return true
     }
-    console.log('IMAGE URL', imageURL)
+
     async function onSubmit(e){
         e.preventDefault()
         setDisabled(false)
@@ -110,7 +110,7 @@ const dispatch = useDispatch();
                         {validation.title && <p className="errors">{validation.title}</p>}
                     </label>
                     <label>
-                        Set Type*
+                        Set Category*
                         <select
                         type='select'
                         style={{borderRadius:'10px', marginLeft:'10px'}}

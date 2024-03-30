@@ -92,12 +92,13 @@ const ItemPage = () => {
         <div className="item-container">
         <div className="item-buttons-wrap">
         <img className="item-image" src={item.image}/>
-
+        <div className="item-buttons-container">
         {item.owner == currentUser?.username && <button className="item-buttons" onClick={()=> navigate(`/items/${itemId}/edit`)}>Edit Item</button>}
         {item.owner == currentUser?.username && <button className="item-buttons"><OpenModalMenuItem
                                     itemText="Delete Item"
                                     modalComponent={<DeleteItemModal itemId={itemId} navigate={navigate} />}
                                 /></button>}
+                                </div>
         </div>
         <h4 className="item-body">{item.body}</h4>
         </div>
@@ -127,6 +128,9 @@ const ItemPage = () => {
                             ) }
                                     <div className="comment-buttons">
 
+
+
+
                                     {currentUser && (comment?.user_id?.id === currentUser?.id) &&
                                     <button className="item-buttons"><OpenModalMenuItem
                                     itemText="Manage Comment"
@@ -140,6 +144,7 @@ const ItemPage = () => {
                                         </button>
 
                                     }
+
                                     </div>
 
 

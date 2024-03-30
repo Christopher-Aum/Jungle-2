@@ -6,4 +6,6 @@
 .Single-Item-Title{
     display: flex;
     justify-content: center;
+    cursor:default;
+    font-size: 18px;
 }

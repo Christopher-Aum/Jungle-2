@@ -17,7 +17,7 @@ function AllItems(){
         for (let item of Object.values(items)){
             res.push([item])
         }
-        // console.log('result array', res)
+        
         return res;
     }
 

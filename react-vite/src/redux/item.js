@@ -62,7 +62,7 @@ export const thunkGetItems = () => async (dispatch) => {
     const response = await fetch(`/api/items/`)
     if(response.ok){
         const items = await response.json()
-        console.log(items)
+
         dispatch(getItems(items))
         return items
     }
@@ -74,7 +74,7 @@ export const thunkPostItem = (item) => async (dispatch) => {
     const data = new FormData()
     for (let key of Object.keys(item))
         data.append(key, item[key]);
-    console.log(item.image)
+
     const response = await fetch('/api/items/', {
         method: 'POST',
         body: data
@@ -173,7 +173,7 @@ export const thunkEditComment = (itemId, comment) => async (dispatch) => {
         method: 'POST',
         body: data
     })
-    console.log(comment)
+    
     if (response.ok){
         const edit_comment = await response.json()
         dispatch(editComment(edit_comment))

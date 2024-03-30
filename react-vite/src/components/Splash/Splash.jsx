@@ -7,10 +7,7 @@ import './Splash.css'
 function HomePage(){
     const dispatch = useDispatch()
     const items = useSelector(state => state.items.items)
-    console.log('Item selector', items)
-    // console.log('Item values', Object.values(items))
-    // const item_val = Object.values(items)
-    // console.log('Item Val', item_val[0])
+    
     useEffect(()=> {
         dispatch(thunkGetItems())
     }, [])

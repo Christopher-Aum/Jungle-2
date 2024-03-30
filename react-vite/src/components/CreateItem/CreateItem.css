@@ -11,6 +11,13 @@ height: 0;
     width: 200px;
     /* background-color: white; */
     cursor:pointer;
+    transition: all .45s ease-out;
+}
+.image-label img:hover, .image-label img:focus{
+    cursor: pointer;
+    transition: all .45s ease-out;
+    box-shadow: 0 0.5em 0.5em -0.4em black;
+    transform: translateY(-0.25em);
 
 }
 .create-item-wrap{
@@ -23,4 +30,8 @@ height: 0;
     /* justify-self: center; */
     /* align-self: center; */
     justify-content: center;
+}
+.upload-form-item{
+    display: flex;
+    margin: 0 auto;
 }
