@@ -1,6 +1,9 @@
 .Computer-Items{
     display: flex;
-    gap: 100px;
+    gap: 80px;
+    background-color:rgba(50, 50, 50, .8);
+    padding: 30px;
+    border-radius: 20px;
 }
 .Item-Containers{
     display: grid;
@@ -11,5 +14,3 @@
 .Item-Containers h2{
     justify-self: center;
 }
-
-

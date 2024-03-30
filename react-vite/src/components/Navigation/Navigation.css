@@ -17,6 +17,13 @@ nav {
 nav > ul {
   display: flex;
   list-style: none;
+  gap: 100px;
+}
+.icon-img{
+  height: 100%;
+}
+.Jungle{
+  font-size: 26px;
 }
 nav > ul > li {
   display: flex;
@@ -31,15 +38,24 @@ nav > ul > li {
 }
 nav > ul > li:hover {
   transition: background-color .2s;
-  background-color:  rgba(37,37,77,1);
+  /* background-color:  rgba(37,37,77,1); */
 }
 .nav-search{
-  width: 200px;
+  width: 400px;
 
+}
+.outside-links{
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+}
+.icon-img-links{
+  height: 150%;
 }
 .nav-search-input{
   border-radius: 10px;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 300px !important;
 }
 .links{
   text-decoration: none;
@@ -57,6 +73,6 @@ nav > ul > li:hover {
 }
 .Profile-Button-Nav:hover{
   transition: none;
-  background-color: #000423;
+  /* background-color: #000423; */
 
 }

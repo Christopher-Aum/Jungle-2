@@ -6,8 +6,8 @@
 .item-container{
     display: flex;
     justify-content: space-between;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 250px;
+    margin-right: 250px;
 }
 .item-buttons{
     height: 40px;
@@ -15,28 +15,52 @@
     list-style: none;
     align-self: center;
     border-radius: 20px;
-    background-color: white;
+    /* background-color: white; */
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-top: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    width: 90px;
+    transition: all .45s ease-out;
+}
+.item-buttons:hover, .item-buttons:focus{
+    /* box-shadow: 1px 1px white; */
+    transition: all .45s ease-out;
+    box-shadow: 0 0.5em 0.5em -0.4em black;
+    transform: translateY(-0.25em);
+}
+
+.item-buttons-container{
+    display: flex;
+    gap: 20px;
 }
 .item-buttons-wrap{
-    width: 100px;
+    width: 200px;
+
 }
 .item-title{
-    margin-left: 30px;
+    margin-left: 250px;
     margin-bottom: 30px;
 }
 .item-body{
-    width: 80%;
+    width: 75%;
+    font-size: 20px;
 }
 .post-comment{
-    margin-left: 30px;
+    /* margin-left: 50px; */
 }
 .comment-buttons{
     display: flex;
     gap: 10px;
+    transition: all .45s ease-out;
 
 }
+
+.comment-buttons:hover, .comment-buttons:focus{
+    /* box-shadow: 1px 1px white; */
+    /* transition: all .45s ease-out;
+    box-shadow: 0 0.5em 0.5em -0.4em;
+    transform: translateY(-0.25em); */
+}
 .comments{
-    margin-left: 30px;
+    margin-left: 250px;
 }
