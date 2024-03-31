@@ -2,7 +2,7 @@
 [1]:https://jungle-utqf.onrender.com/
 
 ## Live Link
-[Jungle][2]
+[Jungle][1]
 
 ## Introduction
 
